@@ -36,7 +36,7 @@ export default {
 				{
 					icon: 'main',
 					link: 'main',
-					title: 'главная'
+					title: 'Главная'
 				},
 				{
 					icon: 'profile',

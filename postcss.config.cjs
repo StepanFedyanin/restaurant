@@ -2,11 +2,20 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
 
 module.exports = {
-    plugins: [
-        // to edit target browsers: use "browserslist" field in package.json
-        require('postcss-mixins'),
-        require('postcss-nested'),
-        require('postcss-simple-vars'),
-        require('autoprefixer')
-    ]
+    plugins: {
+        'postcss-mixins': {},
+        'postcss-nested': {},
+        'postcss-simple-vars': {},
+        'postcss-hexrgba': {},
+        'postcss-color-function': {},
+        'postcss-font-weights': {},
+        'postcss-inline-svg': {
+            paths: ['./src']
+        },
+        'postcss-math': {
+            functionName: 'calculate'
+        },
+        'postcss-conditionals': {},
+        'postcss-preset-env': {}
+    }
 }

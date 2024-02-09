@@ -70,6 +70,7 @@
     }
 
     &__menu {
+        padding: 20px 10px;
         position: absolute;
         z-index: 100;
         background: var(--color-secondary);
@@ -81,12 +82,45 @@
         flex-direction: column;
         align-items: center;
     }
-
+    &__list{
+        margin-top: 20px;
+        width: 100%;
+    }
     &__item {
-        &.main{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+        padding: 10px 0;
+        &:before{
+            display: block;
+            background-size: contain;
+            content: "";
+            height: 1.5rem;
+            left: 1.25rem;
+            transition: all .5s ease;
+            width: 1.5rem;
+        }
+        &.main:before{
             background-image: svg-load('assets/img/icons/home.svg');
         }
-        &.profile{}
-        &.orders{}
+        &.profile:before{
+            background-image: svg-load('assets/img/icons/profile.svg');
+        }
+        &.orders:before{
+            background-image: svg-load('assets/img/icons/order.svg');
+        }
+        &:after{
+            position: absolute;
+            right: 0;
+            display: block;
+            background-size: contain;
+            content: "";
+            height: 0.75rem;
+            transition: all .5s ease;
+            width: 0.75rem;
+            background-repeat: no-repeat;
+            background-image: svg-load('assets/img/icons/right-arrow.svg');
+        }
     }
 }
