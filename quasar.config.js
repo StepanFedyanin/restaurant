@@ -9,9 +9,9 @@
 // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js
 
 const ESLintPlugin = require('eslint-webpack-plugin')
-
+const { resolve } = require('path')
 const { configure } = require('quasar/wrappers')
-
+const env = require('dotenv').config({ path: `.env.${process.env.NODE_ENV.toLowerCase()}` }).parsed;
 module.exports = configure(function (ctx) {
   return {
     // https://v2.quasar.dev/quasar-cli-webpack/supporting-ts
@@ -41,14 +41,16 @@ module.exports = configure(function (ctx) {
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
-      'roboto-font', // optional, you are not bound to it
-      'material-icons' // optional, you are not bound to it
+      // 'roboto-font', // optional, you are not bound to it
+      // 'material-icons' // optional, you are not bound to it
     ],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
     build: {
       vueRouterMode: 'history', // available values: 'hash', 'history'
-
+      env:{
+        ...env
+      },
       // transpile: false,
       // publicPath: '/',
 
@@ -72,8 +74,24 @@ module.exports = configure(function (ctx) {
       chainWebpack (chain) {
         chain.plugin('eslint-webpack-plugin')
           .use(ESLintPlugin, [{ extensions: ['js', 'vue'] }])
-      }
-
+        chain.module.rule('images')
+            .test(/\.(png|jpe?g|gif|svg|webp|avif|ico)(\?.*)?$/)
+            .type('javascript/auto')
+            .use('url-loader')
+            .loader('url-loader')
+            .options({
+              esModule: false,
+              limit: 16384,
+              name: `img/[name].[hash:8].[ext]`
+            })
+      },
+      extendWebpack (cfg) {
+        cfg.resolve.alias = {
+          ...cfg.resolve.alias,
+          '@': resolve(__dirname, './src')
+        }
+      },
+      devtool: 'source-map'
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
@@ -89,7 +107,7 @@ module.exports = configure(function (ctx) {
     framework: {
       config: {},
 
-      // iconSet: 'material-icons', // Quasar icon set
+      // iconSet: 'material-icons', // Quasar icons set
       // lang: 'en-US', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
@@ -154,27 +172,27 @@ module.exports = configure(function (ctx) {
         theme_color: '#027be3',
         icons: [
           {
-            src: 'icons/icon-128x128.png',
+            src: 'icons/icons-128x128.png',
             sizes: '128x128',
             type: 'image/png'
           },
           {
-            src: 'icons/icon-192x192.png',
+            src: 'icons/icons-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'icons/icon-256x256.png',
+            src: 'icons/icons-256x256.png',
             sizes: '256x256',
             type: 'image/png'
           },
           {
-            src: 'icons/icon-384x384.png',
+            src: 'icons/icons-384x384.png',
             sizes: '384x384',
             type: 'image/png'
           },
           {
-            src: 'icons/icon-512x512.png',
+            src: 'icons/icons-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           }

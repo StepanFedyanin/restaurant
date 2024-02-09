@@ -1,5 +1,4 @@
 import ajax from '../utils/ajax'
-
 class RESTError extends Error {
     constructor (error, message, params = {}) {
         // eslint-disable-next-line no-mixed-operators
@@ -24,11 +23,10 @@ class RESTError extends Error {
 }
 
 class REST {
-    static get settings () {
-        throw new Error('settings must be overridden')
+    static get settings() {
+        throw new Error('settings must be overridden');
     }
     
-    // eslint-disable-next-line camelcase
     static _get (url, params = {}, use_cache = false) {
         return this._request('get', url, params, {}, use_cache)
     }

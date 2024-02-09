@@ -33,6 +33,7 @@ export default class {
             delete params.extraParams
         }
         if (params.cancel) {
+            // eslint-disable-next-line import/no-named-as-default-member
             params.cancelToken = new axios.CancelToken(params.cancel)
             delete params.cancel
         }
@@ -40,6 +41,7 @@ export default class {
     }
     
     static cancelToken () {
+        // eslint-disable-next-line import/no-named-as-default-member
         return axios.CancelToken.source()
     }
     

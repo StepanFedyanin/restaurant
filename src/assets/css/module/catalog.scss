@@ -1,0 +1,35 @@
+.catalog{
+    &__categorys{
+        margin: 10px 0;
+        padding: 10px;
+        &--title{
+            margin-bottom: 10px;
+        }
+    }
+    &__category{
+        display: flex;
+        width: 100%;
+        gap: 5px;
+    }
+    &__dish{
+        width: 50%;
+        padding: 5px;
+        background: var(--color-light);
+        border-radius: var(--border-radius);
+        &--image{
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            overflow: hidden;
+        }
+        &--info{
+            margin-top: 5px;
+            p{
+                display: flex;
+                justify-content: flex-end;
+                gap: 5px;
+                span{
+                    color: var(--color-main);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+.category{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    background: #FFF;
+    padding: 10px;
+    &__btn{
+        background: transparent;
+        border: 1px solid var(--color-secondary);
+        border-radius: var(--border-radius);
+        padding: 5px 15px;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--color-secondary);
+        transition: all .3s;
+        &--active{
+            color: var(--color-main);
+            border: 1px solid var(--color-main);
+        }
+    }
+}
