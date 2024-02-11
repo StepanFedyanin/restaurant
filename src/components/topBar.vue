@@ -1,28 +1,31 @@
 <template>
 	<div class="topbar">
-		<div class="topbar__header">
-			<p class="topbar__user h1">Привет, {{ name }}</p>
-			<button class="topbar__burger">
-				<span></span>
-			</button>
+    <button class="topbar__burger" @click="changeShowMenu(true)">
+      <span></span>
+    </button>
+		<div class="topbar__notifications active">
 		</div>
-		<div>
-			<button>Доставка</button>
-			<button>Самовывоз</button>
-		</div>
-		<div class="topbar__menu">
+		<div :class="['topbar__menu', showMenu?'active':null]">
 			<div class="topbar__head">
-				<p class="topbar__title">
+				<p class="topbar__title h2">
 					Настройки
 				</p>
-				<button class="topbar__burger active">
+				<button class="topbar__burger topbar__close active" @click="changeShowMenu(false)">
 					<span></span>
 				</button>
 			</div>
 			<ul class="topbar__list">
 				<li v-for="item in menuList" :key="item.link" :class="['topbar__item', item.icon]">{{item.title}}</li>
 			</ul>
-			О нас
+      <div class="topbar__feedback q-mt-lg">
+        О нас
+        <div class="topbar__tools">
+          <button class="btn">
+            Написать нам
+          </button>
+          <a class="btn">Позвонить нам</a>
+        </div>
+      </div>
 		</div>
 	</div>
 </template>
@@ -32,6 +35,7 @@ export default {
 	name: 'topbar',
 	data() {
 		return {
+      showMenu: false,
 			menuList: [
 				{
 					icon: 'main',
@@ -50,6 +54,11 @@ export default {
 				}
 			]
 		}
-	}
+	},
+  methods:{
+    changeShowMenu (value) {
+      this.showMenu = value;
+    }
+  }
 }
 </script>
