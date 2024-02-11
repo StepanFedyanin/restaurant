@@ -3,10 +3,11 @@
     <TopBar class="q-mb-lg"/>
     <div class="catalog__restaurant p q-mb-lg">{{ restaurant.name }} - {{ restaurant.address }}</div>
     <categoryDish class="q-mb-lg" :select="selectCategory" :categories="category" @changeSelect="changeCategory"/>
-    <div v-for="restaurant in restaurant.categorys" :key="`category-${restaurant.id}`" class="catalog__categorys q-mb-md">
+    <div v-for="restaurant in restaurant.categorys" :key="`category-${restaurant.id}`"
+         class="catalog__categorys q-mb-md">
       <h2 class="h2 q-my-md" :id="restaurant.category">{{ restaurant.category }}</h2>
       <div class="catalog__category">
-        <div v-for="dish in restaurant.dish" :key="`dish-${dish.id}`" class="catalog__dish">
+        <div v-for="dish in restaurant.dish" :key="`dish-${dish.id}`" class="catalog__dish" @click="getDish(dish.id)">
           <div class="catalog__dish--info">
             {{ dish.name }}
             <span>{{ dish.price }} ₽</span>
@@ -20,21 +21,23 @@
         </div>
       </div>
     </div>
-    <Navbar/>
+    <dish :dish="selectedDish" :showDish="showDish" @hiddenDish="changeShowDish"/>
   </div>
 </template>
 
 <script>
 import {app} from '@/services'
-import Navbar from "@/components/navbar.vue";
 import TopBar from "@/components/topBar.vue";
 import CategoryDish from "@/components/categoryDish.vue";
+import dish from "@/components/dish.vue";
 
 export default {
   name: 'catalog',
-  components: {CategoryDish, Navbar, TopBar},
+  components: {CategoryDish, TopBar, dish},
   data() {
     return {
+      selectedDish: null,
+      showDish: false,
       restaurant: [],
       category: [],
       selectCategory: null
@@ -62,8 +65,19 @@ export default {
         console.log(err)
       }))
     },
+    getDish(id) {
+      app.getDish(id).then(data => {
+        this.selectedDish = data;
+        this.changeShowDish(true);
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     changeCategory(value) {
       this.selectCategory = value
+    },
+    changeShowDish(value) {
+      this.showDish = value;
     }
   }
 }
