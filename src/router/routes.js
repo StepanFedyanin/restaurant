@@ -1,11 +1,13 @@
 const routes = [
   {
     path: '/',
-    component: () => import('src/views/home'),
+    name: 'login',
+    component: () => import('src/views/auth.vue'),
   },
   {
     path: `/restaurant/:id`,
-    component: () => import('src/views/catalog.vue'),
+    name: 'restaurant',
+    component: () => import('src/views/home.vue'),
   },
 ]
 

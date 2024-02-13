@@ -1,3 +1,37 @@
-.home{
-    background: var(--color-gradient);
+.catalog{
+    &__restaurant{
+        padding: 12px 15px;
+        border-radius: var(--border-radius);
+        background: var(--color-light);
+    }
+    &__category{
+        display: flex;
+    }
+    &__dish{
+        width: 50%;
+        background: var(--color-light);
+        padding: 20px 0 0;
+        border-radius: var(--border-radius);
+        &:nth-child(2n){
+            margin-left: 6px;
+        }
+        &:nth-child(2n - 1){
+            margin-right: 6px;
+        }
+        &--info{
+            padding: 0 15px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 70%;
+            span{
+                color: var(--color-main);
+            }
+        }
+        &--btn{
+            display: flex;
+            justify-content: flex-end;
+            margin: 15px 10px;
+        }
+    }
 }

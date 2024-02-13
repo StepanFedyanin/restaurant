@@ -146,11 +146,11 @@
       display: block;
       background-size: contain;
       content: "";
-      height: 0.75rem;
+      height: 1rem;
+      width: 1rem;
       transition: all .5s ease;
-      width: 0.75rem;
       background-repeat: no-repeat;
-      background-image: svg-load('assets/img/icons/right-arrow.svg', fill=$color-inactive);
+      background-image: svg-load('assets/img/icons/right-arrow.svg', stroke=$color-inactive);
     }
     &.active{
       &:after {

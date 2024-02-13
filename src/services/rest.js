@@ -1,4 +1,5 @@
-import ajax from '../utils/ajax'
+import ajax from '@/utils/ajax'
+import store from '@/store'
 class RESTError extends Error {
     constructor (error, message, params = {}) {
         // eslint-disable-next-line no-mixed-operators
@@ -60,12 +61,11 @@ class REST {
     }
     
     static _getAuthHeaders () {
-        // if (store.state.access) {
-        //     return { Authorization: `Bearer ${store.state.access}` }
-        // } else {
-        //     return {}
-        // }
-        return {}
+        if (store.state.token.access) {
+            return { Authorization: `Bearer ${store.state.token.access}` }
+        } else {
+            return {}
+        }
     }
 }
 

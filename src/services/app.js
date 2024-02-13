@@ -27,4 +27,20 @@ export default class extends REST {
             throw new RESTError(error, 'не удалось получить блюдо')
         })
     }
+    
+    static sendPhoneLogin (params) {
+        return this._post(`user/login/create_code`, {}, params).then(data=>{
+            return data
+        }).catch((error)=>{
+            throw new RESTError(error, 'не удалось отправить запрос на получение кода')
+        })
+    }
+    
+    static sendCodeLogin (params) {
+        return this._post(`user/login/post_code`, {}, params).then(data=>{
+            return data
+        }).catch((error)=>{
+            throw new RESTError(error, 'не удалось отправить код')
+        })
+    }
 }
