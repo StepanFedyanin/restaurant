@@ -61,8 +61,8 @@ class REST {
     }
     
     static _getAuthHeaders () {
-        if (store.state.token.access) {
-            return { Authorization: `Bearer ${store.state.token.access}` }
+        if (store.state.token) {
+            return { Authorization: `Bearer ${store.state.token}` }
         } else {
             return {}
         }

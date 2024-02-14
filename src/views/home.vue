@@ -15,7 +15,12 @@
 						<img :src="dish.image">
 					</div>
 					<div class="catalog__dish--btn">
-						<button class="btn h4">Добавить</button>
+						<button class="btn h4" v-if="dish.quantity===0" @click.stop="postAddOrder(dish.id)">Добавить</button>
+						<div v-else class="catalog__dish--quantity" @click.stop>
+							<button class="catalog__dish--minus"></button>
+							{{dish.quantity}}
+							<button class="catalog__dish--plus"></button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -51,7 +56,6 @@ export default {
 	methods: {
 		getRestaurant(params) {
 			app.getRestaurant(params).then((data) => {
-				console.log(data)
 				this.restaurant = data;
 			}).catch((err => {
 				console.log(err)
@@ -71,6 +75,17 @@ export default {
 				this.selectedDish = data;
 				this.changeShowDish(true);
 			}).catch(err => {
+				console.log(err)
+			})
+		},
+		postAddOrder(dish_id){
+			const params = {
+				restaurant:this.$route.params.id,
+				dish:dish_id
+			}
+			app.sendOrderItem(params).then(data=>{
+				this.restaurant = data;
+			}).catch((err)=>{
 				console.log(err)
 			})
 		},

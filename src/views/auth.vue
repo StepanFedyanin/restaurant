@@ -78,7 +78,7 @@ export default {
 		sendCode(){
 			const params = {code:this.loginFormData.code.join('') , phone: this.loginFormData.phone.replace(/ /g, '').replace(/-/g, '')}
 			app.sendCodeLogin(params).then(data => {
-				// this.$store.dispatch('setToken', data);
+				this.$store.dispatch('setToken', data);
 				this.next('restaurant', {id:1})
 			}).catch((err) => {
 				console.log(err)

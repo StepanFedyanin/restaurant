@@ -43,4 +43,12 @@ export default class extends REST {
             throw new RESTError(error, 'не удалось отправить код')
         })
     }
+    
+    static sendOrderItem (params){
+        return this._post(`restaurants/order/add_dish`, {}, params).then(data=>{
+            return data
+        }).catch((error)=>{
+            throw new RESTError(error, 'не удалось добавить в заказ')
+        })
+    }
 }

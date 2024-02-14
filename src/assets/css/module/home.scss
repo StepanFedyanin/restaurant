@@ -33,5 +33,32 @@
             justify-content: flex-end;
             margin: 15px 10px;
         }
+        &--quantity{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: var(--border-radius);
+            background: var(--color-main);
+            color: var(--color-light);
+            padding: 2px;
+        }
+        &--plus, &--minus{
+            width: 25px;
+            height: 22px;
+            background: var(--color-main);
+            border: none;
+            border-radius: var(--border-radius);
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: 50%;
+        }
+        &--minus{
+            background-image: svg-load('assets/img/icons/minus.svg', fill=#FFFF);
+            border-right: 2px solid var(--color-main-light);
+        }
+        &--plus{
+            background-image: svg-load('assets/img/icons/plus.svg', stroke=#FFFF);
+            border-left: 2px solid var(--color-main-light);
+        }
     }
 }
