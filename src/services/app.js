@@ -51,4 +51,22 @@ export default class extends REST {
             throw new RESTError(error, 'не удалось добавить в заказ')
         })
     }
+    
+    static sendUpdateOrderItem(params){
+        return this._post(`restaurants/order/change_quantity_dish`, {}, params).then(data=>{
+            return data
+        }).catch((error)=>{
+            throw new RESTError(error, 'не удалось добавить в заказ')
+        })
+    }
+    
+    static sendRemoveOrderItem(params){
+        return this._post(`restaurants/order/remove_dish`, {}, params).then(data=>{
+            return data
+        }).catch((error)=>{
+            throw new RESTError(error, 'не удалось добавить в заказ')
+        })
+    }
+    
+    
 }

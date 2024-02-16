@@ -9,6 +9,7 @@
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "serve": "npx cross-env NODE_ENV=local quasar dev",
+    "build:dev": "npx cross-env NODE_ENV=development quasar build",
     "build": "quasar build"
   },
   "dependencies": {
