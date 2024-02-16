@@ -91,3 +91,35 @@ body{
         }
     }
 }
+
+.loader{
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    &.active{
+        :first-child{
+            opacity: 0.4;
+        }
+        &:after{
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto auto;
+            content: '';
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--color-light);
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: loader .7s linear infinite;
+        }
+    }
+    @keyframes loader {
+        from{
+            transform: rotate(360deg);
+        }
+    }
+}
+
