@@ -6,20 +6,21 @@
 		<template v-if="template === 'login'">
 			<div class="auth__content">
 				<div :class="['auth__steps',loginStep === 'sent' ? 'active': null]">
-					<form class="auth__step" @submit.prevent="sendLogin">
-						<ui-input
-							class="auth__phone"
-							placeholder="8 (999) 999 - 99 - 99"
-							maska="7 ### ###-##-##"
-							v-model="loginFormData.phone"
+					<q-form class="auth__step" @submit.prevent="sendLogin">
+						<q-input
 							label="Номер телефона"
-							:required="true"
+							rounded
+							outlined
+							mask="7 ### ###-##-##"
+							v-model="loginFormData.phone"
+							placeholder="8 (999) 999 - 99 - 99"
+							color="primary"
 						/>
 						<loader class="auth__next" :show="loaderSendLogin">
 							<button class="auth__next--btn btn" :disabled="loaderSendLogin"></button>
 						</loader>
-					</form>
-					<form class="auth__step" @submit.prevent="sendCode">
+					</q-form>
+					<q-form class="auth__step" @submit.prevent="sendCode">
 						<div class="auth__code form__control">
 							<label class="form__label">Код из СМС</label>
 							<div class="auth__code--control">
@@ -33,10 +34,14 @@
 								/>
 							</div>
 						</div>
-						<loader :show="loaderSendCode">
-							<button class="auth__submit btn" :disabled="loaderSendCode">Отправить</button>
-						</loader>
-					</form>
+						<q-btn
+							color="primary"
+							rounded
+							:loading="loaderSendCode"
+						>
+							Отправить
+						</q-btn>
+					</q-form>
 				</div>
 			</div>
 		</template>
@@ -98,15 +103,14 @@
 
 <script>
 import {app} from '@/services'
-import UiInput from "components/UI/input.vue";
 import Loader from "components/UI/loader.vue";
 
 export default {
 	name: 'auth',
-	components: {Loader, UiInput},
+	components: {Loader},
 	data() {
 		return {
-			loginStep: null,
+			loginStep: 'sent',
 			registerStep: null,
 			loaderSendLogin: false,
 			loaderSendCode: false,
@@ -136,7 +140,7 @@ export default {
 		}
 	},
 	watch: {
-		'loginFormData.code': {
+		'loginFormData.code.join()': {
 			immediate: true,
 			handler(to, from) {
 				console.log(to, from)

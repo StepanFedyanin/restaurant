@@ -66,6 +66,17 @@ body{
     padding: 7px 15px;
 }
 
+.q-field__label{
+    color: var(--color-main) !important;
+}
+.q-field__native{
+    color: var(--color-light);
+    font-size: 16px;
+}
+.q-field__control:before{
+  border-color: var(--color-main) !important;
+}
+
 .form{
     &__control{
         display: flex;
