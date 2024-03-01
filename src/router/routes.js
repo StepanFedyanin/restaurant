@@ -20,6 +20,11 @@ const routes = [
     name: 'restaurant',
     component: () => import('src/views/home.vue'),
   },
+  {
+    path: `/orders`,
+    name: 'orders',
+    component: () => import('src/views/orders.vue'),
+  },
 ]
 
 export default routes

@@ -1,17 +1,19 @@
 <template>
-	<div class="catalog__dish--info">
-		{{ dish.name }}
-		<span>{{ dish.price }} ₽</span>
-	</div>
-	<div class="catalog__dish--image">
-		<img :src="dish.image">
-	</div>
-	<div class="catalog__dish--btn">
-		<button class="btn h4" v-if="dish.quantity===0" @click.stop="postAddOrder(dish.id)">Добавить</button>
-		<div v-else class="catalog__dish--quantity">
-			<button class="catalog__dish--minus" @click.stop="changeQuantity(dish.quantity - 1, dish.order_item)"></button>
-			{{dish.quantity}}
-			<button class="catalog__dish--plus" @click.stop="changeQuantity(dish.quantity + 1, dish.order_item)"></button>
+	<div class="catalog__dish">
+		<div class="catalog__dish--info">
+			{{ dish.name }}
+			<span>{{ dish.price }} ₽</span>
+		</div>
+		<div class="catalog__dish--image">
+			<img :src="dish.image">
+		</div>
+		<div class="catalog__dish--btn">
+			<button class="btn h4" v-if="dish.quantity===0" @click.stop="postAddOrder(dish.id)">Добавить</button>
+			<div v-else class="catalog__dish--quantity">
+				<button class="catalog__dish--minus" @click.stop="changeQuantity(dish.quantity - 1, dish.order_item)"></button>
+				{{dish.quantity}}
+				<button class="catalog__dish--plus" @click.stop="changeQuantity(dish.quantity + 1, dish.order_item)"></button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -20,9 +22,9 @@
 import {app} from '@/services'
 
 export default {
-	name: 'dish-card',
+	name: 'dish-card-catalog',
 	props:{
-		params:{
+		paramsDish:{
 			type: Object,
 			default(){
 				return {}
@@ -31,7 +33,7 @@ export default {
 	},
 	data(){
 		return {
-			dish: this.params
+			dish: this.paramsDish
 		}
 	},
 	methods:{

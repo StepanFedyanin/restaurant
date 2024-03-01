@@ -69,4 +69,11 @@ export default class extends REST {
     }
     
     
+    static getOrders(){
+        return this._get(`restaurants/order/1`, {}, {}).then(data=>{
+            return data
+        }).catch((error)=>{
+            throw new RESTError(error, 'не удалось получить заказ')
+        })
+    }
 }

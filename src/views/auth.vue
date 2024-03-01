@@ -20,7 +20,7 @@
 							<button class="auth__next--btn btn" :disabled="loaderSendLogin"></button>
 						</loader>
 					</q-form>
-					<q-form class="auth__step" @submit.prevent="sendCode">
+					<q-form class="auth__step" @submit="sendCode">
 						<div class="auth__code form__control">
 							<label class="form__label">Код из СМС</label>
 							<div class="auth__code--control">
@@ -37,6 +37,7 @@
 						<q-btn
 							color="primary"
 							rounded
+							type="submit"
 							:loading="loaderSendCode"
 						>
 							Отправить
@@ -110,7 +111,7 @@ export default {
 	components: {Loader},
 	data() {
 		return {
-			loginStep: 'sent',
+			loginStep: null,
 			registerStep: null,
 			loaderSendLogin: false,
 			loaderSendCode: false,

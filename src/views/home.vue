@@ -6,9 +6,12 @@
 		<div v-for="restaurant in restaurant.categorys" :key="`category-${restaurant.id}`" class="catalog__categorys q-mb-md">
 			<h2 class="h2 q-my-md" :id="restaurant.category" v-scroll-fire="log">{{ restaurant.category }}</h2>
 			<div class="catalog__category">
-				<div v-for="dish in restaurant.dish" :key="`dish-${dish.id}`" class="catalog__dish" @click="getDish(dish.id)">
-					<DishCard :params="dish"/>
-				</div>
+				<DishCardCatalog
+					v-for="dish in restaurant.dish"
+					:key="`dish-${dish.id}`"
+					@click="getDish(dish.id)"
+					:paramsDish="dish"
+				/>
 			</div>
 		</div>
 		<dish :dish="selectedDish" :showDish="showDish" @hiddenDish="changeShowDish"/>
@@ -20,11 +23,11 @@ import {app} from '@/services'
 import TopBar from "@/components/topBar.vue";
 import CategoryDish from "@/components/categoryDish.vue";
 import dish from "@/components/dish.vue";
-import DishCard from "components/dish-card.vue";
+import DishCardCatalog from "@/components/dish-card-catalog.vue";
 
 export default {
 	name: 'catalog',
-	components: {DishCard, CategoryDish, TopBar, dish},
+	components: {DishCardCatalog, CategoryDish, TopBar, dish},
 	data() {
 		return {
 			selectedDish: null,
